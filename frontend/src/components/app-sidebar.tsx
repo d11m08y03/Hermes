@@ -8,6 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
 } from "@/components/ui/sidebar"
 
 interface Links {
@@ -74,6 +75,7 @@ export default function AppSidebar() {
     <Sidebar variant="sidebar">
       <SidebarContent>
         <SidebarSection sectionName="Events" links={events} />
+        <SidebarSeparator />
         <SidebarSection sectionName="Utilities" links={utilities} />
       </SidebarContent>
     </Sidebar>
