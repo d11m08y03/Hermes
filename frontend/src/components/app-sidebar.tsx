@@ -1,5 +1,4 @@
-import { Bot, Calculator, CodeXml, Waves } from "lucide-react"
-
+import { Bot, Calculator, CodeXml, LucideIcon, Waves } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -11,72 +10,72 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-const events = [
-  {
-    title: "Outings",
-    url: "#",
-    icon: Waves,
-  },
-  {
-    title: "App Cup",
-    url: "#",
-    icon: CodeXml,
-  },
-]
+interface Links {
+  title: string,
+  url: string,
+  icon: LucideIcon
+}
 
-const utilities = [
-  {
-    title: "CPA Calculator",
-    url: "#",
-    icon: Calculator,
-  },
-  {
-    title: "AI Detector",
-    url: "#",
-    icon: Bot,
-  }
-]
+interface SidebarSectionProps {
+  sectionName: string,
+  links: Links[]
+}
+
+const SidebarSection: React.FC<SidebarSectionProps> = ({ sectionName, links }) => {
+  return (
+    <SidebarGroup>
+      <SidebarGroupLabel>{sectionName}</SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {links.map((link) => (
+            <SidebarMenuItem key={link.title}>
+              <SidebarMenuButton asChild>
+                <a href={link.url}>
+                  <link.icon />
+                  <span>{link.title}</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+};
 
 export default function AppSidebar() {
+  const utilities: Links[] = [
+    {
+      title: "CPA Calculator",
+      url: "#",
+      icon: Calculator,
+    },
+    {
+      title: "AI Detector",
+      url: "#",
+      icon: Bot,
+    }
+  ];
+
+  const events: Links[] = [
+    {
+      title: "Outings",
+      url: "#",
+      icon: Waves,
+    },
+    {
+      title: "App Cup",
+      url: "#",
+      icon: CodeXml,
+    },
+  ];
+
   return (
     <Sidebar variant="sidebar">
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Events</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {events.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Utilities</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {utilities.map((utility) => (
-                <SidebarMenuItem key={utility.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={utility.url}>
-                      <utility.icon />
-                      <span>{utility.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <SidebarSection sectionName="Events" links={events} />
+        <SidebarSection sectionName="Utilities" links={utilities} />
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
