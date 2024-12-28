@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Bot, Calculator, CodeXml, Waves } from "lucide-react"
 
 import {
   Sidebar,
@@ -11,49 +11,64 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-// Menu items.
-const items = [
+const events = [
   {
-    title: "Home",
+    title: "Outings",
     url: "#",
-    icon: Home,
+    icon: Waves,
   },
   {
-    title: "Inbox",
+    title: "App Cup",
     url: "#",
-    icon: Inbox,
+    icon: CodeXml,
+  },
+]
+
+const utilities = [
+  {
+    title: "CPA Calculator",
+    url: "#",
+    icon: Calculator,
   },
   {
-    title: "Calendar",
+    title: "AI Detector",
     url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+    icon: Bot,
+  }
 ]
 
 export default function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar variant="sidebar">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Events</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {events.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Utilities</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {utilities.map((utility) => (
+                <SidebarMenuItem key={utility.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={utility.url}>
+                      <utility.icon />
+                      <span>{utility.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
