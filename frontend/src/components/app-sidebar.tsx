@@ -48,7 +48,7 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
   );
 };
 
-export default function AppSidebar() {
+const AppSidebar = () => {
   const events: Links[] = [
     {
       title: "Outings",
@@ -84,4 +84,6 @@ export default function AppSidebar() {
       </SidebarContent>
     </Sidebar>
   );
-}
+};
+
+export default AppSidebar;
