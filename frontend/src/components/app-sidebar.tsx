@@ -1,4 +1,4 @@
-import { Bot, Calculator, CodeXml, LucideIcon, Waves } from "lucide-react"
+import { Bot, Calculator, CodeXml, LucideIcon, Waves } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -9,21 +9,24 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { LinksEnum } from "@/lib/LinksEnum";
 
 interface Links {
-  title: string,
-  url: string,
-  icon: LucideIcon
+  title: string;
+  url: string;
+  icon: LucideIcon;
 }
 
 interface SidebarSectionProps {
-  sectionName: string,
-  links: Links[]
+  sectionName: string;
+  links: Links[];
 }
 
-const SidebarSection: React.FC<SidebarSectionProps> = ({ sectionName, links }) => {
+const SidebarSection: React.FC<SidebarSectionProps> = ({
+  sectionName,
+  links,
+}) => {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{sectionName}</SidebarGroupLabel>
@@ -69,9 +72,8 @@ export default function AppSidebar() {
       title: "AI Detector",
       url: LinksEnum.AI_DETECTOR,
       icon: Bot,
-    }
+    },
   ];
-
 
   return (
     <Sidebar variant="sidebar">

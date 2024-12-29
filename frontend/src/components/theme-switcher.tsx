@@ -1,44 +1,46 @@
-import { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
-import { Button } from './ui/button';
+import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function ThemeSwitcher() {
   const [theme, setTheme] = useState(
-    typeof window !== 'undefined' ? localStorage.getItem('theme') || 'light' : 'light'
+    typeof window !== "undefined"
+      ? localStorage.getItem("theme") || "light"
+      : "light",
   );
 
   useEffect(() => {
     const root = window.document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
+    if (theme === "dark") {
+      root.classList.add("dark");
     } else {
-      root.classList.remove('dark');
+      root.classList.remove("dark");
     }
 
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.ctrlKey && event.key === 'd') {
+      if (event.ctrlKey && event.key === "d") {
         event.preventDefault();
         toggleTheme();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
   return (
-    <Button variant='ghost' size='icon' onClick={toggleTheme}>
-      {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+    <Button variant="ghost" size="icon" onClick={toggleTheme}>
+      {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
     </Button>
   );
 }

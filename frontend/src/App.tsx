@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 import Outings from "./pages/Outings";
 import { LinksEnum } from "./lib/LinksEnum";
 import AppCup from "./pages/App-Cup";
@@ -16,8 +16,8 @@ const App = () => {
         <Route path={LinksEnum.CPA_CALCULATOR} element={<CPACalculator />} />
         <Route path={LinksEnum.AI_DETECTOR} element={<AIDetector />} />
       </Routes>
-    </BrowserRouter >
+    </BrowserRouter>
   );
-}
+};
 
-export default App
+export default App;

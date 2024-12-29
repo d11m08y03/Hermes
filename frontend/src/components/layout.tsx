@@ -1,12 +1,19 @@
-import React from "react"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "./ui/sidebar"
+import React from "react";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "./ui/sidebar";
 import AppSidebar from "./app-sidebar";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "./ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./ui/breadcrumb";
 import { Separator } from "./ui/separator";
 import ThemeSwitcher from "./theme-switcher";
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Header: React.FC = () => {
@@ -24,7 +31,7 @@ const Header: React.FC = () => {
     const capitaliseFirstLetter = (str: string): string => {
       if (!str) return str;
       return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    };
 
     section = capitaliseFirstLetter(section);
     subsection = capitaliseFirstLetter(subsection);
@@ -37,23 +44,20 @@ const Header: React.FC = () => {
 
       <Breadcrumb>
         <BreadcrumbList>
-
           <BreadcrumbItem className="hidden md:block">
             <BreadcrumbLink href="#">
               {section === "" ? "Home" : section}
             </BreadcrumbLink>
           </BreadcrumbItem>
 
-          {
-            subsection !== "" && (
-              <>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{subsection}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </>
-            )
-          }
+          {subsection !== "" && (
+            <>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{subsection}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </>
+          )}
         </BreadcrumbList>
       </Breadcrumb>
 
@@ -61,8 +65,8 @@ const Header: React.FC = () => {
         <ThemeSwitcher />
       </div>
     </header>
-  )
-}
+  );
+};
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
@@ -70,9 +74,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <AppSidebar />
       <SidebarInset>
         <Header />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
