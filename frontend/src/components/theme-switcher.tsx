@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { Button } from './ui/button';
 
 export default function ThemeSwitcher() {
   const [theme, setTheme] = useState(
@@ -21,13 +22,23 @@ export default function ThemeSwitcher() {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.key === 'd') {
+        event.preventDefault();
+        toggleTheme();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
-    <button
-      onClick={toggleTheme}
-      className="flex items-center justify-center p-2 rounded-md shadow-sm dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-      aria-label="Toggle theme"
-    >
+    <Button variant='ghost' size='icon' onClick={toggleTheme}>
       {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-    </button>
+    </Button>
   );
 }

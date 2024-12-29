@@ -10,6 +10,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar"
+import { LinksEnum } from "@/lib/LinksEnum";
 
 interface Links {
   title: string,
@@ -45,31 +46,32 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({ sectionName, links }) =
 };
 
 export default function AppSidebar() {
-  const utilities: Links[] = [
-    {
-      title: "CPA Calculator",
-      url: "#",
-      icon: Calculator,
-    },
-    {
-      title: "AI Detector",
-      url: "#",
-      icon: Bot,
-    }
-  ];
-
   const events: Links[] = [
     {
       title: "Outings",
-      url: "#",
+      url: LinksEnum.OUTINGS,
       icon: Waves,
     },
     {
       title: "App Cup",
-      url: "#",
+      url: LinksEnum.APP_CUP,
       icon: CodeXml,
     },
   ];
+
+  const utilities: Links[] = [
+    {
+      title: "CPA Calculator",
+      url: LinksEnum.CPA_CALCULATOR,
+      icon: Calculator,
+    },
+    {
+      title: "AI Detector",
+      url: LinksEnum.AI_DETECTOR,
+      icon: Bot,
+    }
+  ];
+
 
   return (
     <Sidebar variant="sidebar">
