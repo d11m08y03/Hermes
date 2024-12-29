@@ -2,6 +2,7 @@ import { Bot, Calculator, CodeXml, LucideIcon, Waves } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,6 +12,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { LinksEnum } from "@/lib/LinksEnum";
+import { NavUser } from "./nav-user";
 
 interface Links {
   title: string;
@@ -75,6 +77,12 @@ const AppSidebar = () => {
     },
   ];
 
+  const user = {
+    name: "hello",
+    email: "hello@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  };
+
   return (
     <Sidebar variant="sidebar">
       <SidebarContent>
@@ -82,6 +90,9 @@ const AppSidebar = () => {
         <SidebarSeparator />
         <SidebarSection sectionName="Utilities" links={utilities} />
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={user} />
+      </SidebarFooter>
     </Sidebar>
   );
 };
