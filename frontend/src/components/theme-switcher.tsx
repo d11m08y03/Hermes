@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 
 export default function ThemeSwitcher() {
   const [theme, setTheme] = useState(
@@ -39,8 +40,18 @@ export default function ThemeSwitcher() {
   }, []);
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggleTheme}>
-      {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-    </Button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button variant="ghost" size="icon" onClick={toggleTheme}>
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Theme Toggler</p>
+          <p>(Ctrl-D)</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

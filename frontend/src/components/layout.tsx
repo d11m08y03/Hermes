@@ -11,6 +11,12 @@ import {
 } from "./ui/breadcrumb";
 import { Separator } from "./ui/separator";
 import ThemeSwitcher from "./theme-switcher";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,7 +45,18 @@ const Header: React.FC = () => {
 
   return (
     <header className="flex h-10 shrink-0 items-center gap-2 border-b px-4 w-full">
-      <SidebarTrigger className="-ml-1" />
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <SidebarTrigger className="-ml-1" />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Sidebar Toggler</p>
+            <p>(Ctrl-B)</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
       <Separator orientation="vertical" className="mr-2 h-4" />
 
       <Breadcrumb>
@@ -61,7 +78,7 @@ const Header: React.FC = () => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="ml-auto">
+      <div className="ml-auto -mr-2">
         <ThemeSwitcher />
       </div>
     </header>
